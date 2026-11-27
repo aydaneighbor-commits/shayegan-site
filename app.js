@@ -4,15 +4,34 @@
 // served by this page; entries are metadata + official-source notes.
 
 function posterSVG(seed, label) {
-  const hues = ["#00f6ff", "#ff2ea6", "#7b2fff", "#ffe600"];
-  const c1 = hues[seed % hues.length];
-  const c2 = hues[(seed + 1) % hues.length];
+  const skies = [["#ff2975", "#8c1eff"], ["#ff4fd8", "#5a1fb8"], ["#ffd319", "#ff2975"], ["#8b3dff", "#ff2e88"]];
+  const [c1, c2] = skies[seed % skies.length];
+  const gid = "pg" + seed;
+  const sunX = 90 + (seed * 53) % 220;
+  const b = (x, w, h) => `<rect x="${x}" y="${150 - h}" width="${w}" height="${h}"/>`;
+  const win = (x, y) => `<rect x="${x}" y="${y}" width="5" height="5"/>`;
   return `<svg class="poster" viewBox="0 0 400 150" role="img" aria-label="${label} artwork">
-    <rect width="400" height="150" fill="#07071a"/>
-    <circle cx="${70 + seed * 40}" cy="55" r="34" fill="none" stroke="${c1}" stroke-width="3"/>
-    <polygon points="250,120 300,40 350,120" fill="none" stroke="${c2}" stroke-width="3"/>
-    <path d="M0 130 L90 95 L180 120 L270 85 L400 115" fill="none" stroke="${c1}" stroke-width="2"/>
-    <text x="18" y="138" fill="#e8f6ff" font-family="monospace" font-size="15" letter-spacing="3">${label}</text>
+    <defs>
+      <linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#0a0618"/><stop offset="0.6" stop-color="#1d0b3d"/><stop offset="1" stop-color="#3b0f4f"/>
+      </linearGradient>
+      <linearGradient id="${gid}s" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#ffd319"/><stop offset="0.5" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/>
+      </linearGradient>
+      <clipPath id="${gid}c"><circle cx="${sunX}" cy="78" r="40"/></clipPath>
+    </defs>
+    <rect width="400" height="150" fill="url(#${gid})"/>
+    <g fill="#ffffff"><circle cx="${30 + seed * 17 % 60}" cy="18" r="1.4"/><circle cx="${300 + seed * 13 % 70}" cy="14" r="1.2"/><circle cx="${180 + seed * 29 % 90}" cy="26" r="1"/></g>
+    <g clip-path="url(#${gid}c)">
+      <circle cx="${sunX}" cy="78" r="40" fill="url(#${gid}s)"/>
+      <g fill="#0a0618"><rect x="${sunX - 45}" y="92" width="90" height="3"/><rect x="${sunX - 45}" y="101" width="90" height="4"/><rect x="${sunX - 45}" y="112" width="90" height="6"/></g>
+    </g>
+    <ellipse cx="${sunX}" cy="78" rx="74" ry="12" fill="none" stroke="${c1}" stroke-width="1.4" opacity=".7" transform="rotate(-10 ${sunX} 78)"/>
+    <g fill="#120826">${b(8, 30, 46)}${b(46, 24, 64)}${b(78, 34, 38)}${b(288, 28, 58)}${b(324, 22, 42)}${b(354, 36, 68)}</g>
+    <g fill="${c1}">${win(54, 96)}${win(54, 110)}${win(296, 102)}${win(362, 92)}${win(362, 108)}</g>
+    <g fill="#ffd319">${win(16, 112)}${win(332, 116)}</g>
+    <g stroke="${c1}" stroke-width="1" opacity=".5"><path d="M0 132 H400 M0 140 H400 M0 148 H400"/></g>
+    <text x="14" y="144" fill="#f3eaff" font-family="monospace" font-size="13" letter-spacing="3">${label}</text>
   </svg>`;
 }
 

@@ -1,0 +1,14 @@
+SHAYEGAN — License File (SAMPLE)
+
+Account: <your own registered email>
+Tier: <Bronze | Gold | Diamond>
+License key: SHY-XXXX-XXXX-XXXX-XXXX
+
+How to activate:
+1. Open the Shayegan app.
+2. Sign in with the account you registered yourself.
+3. Paste this license key in Settings > Subscription.
+
+This file is generated per user by the backend after payment is
+verified. It never contains anyone's password, and it is never a
+login for any third-party service.

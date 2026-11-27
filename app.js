@@ -7,8 +7,7 @@ function posterSVG(seed, label) {
   const skies = [["#ff2975", "#8c1eff"], ["#ff4fd8", "#5a1fb8"], ["#ffd319", "#ff2975"], ["#8b3dff", "#ff2e88"]];
   const [c1, c2] = skies[seed % skies.length];
   const gid = "pg" + seed;
-  const sunX = 90 + (seed * 53) % 220;
-  const b = (x, w, h) => `<rect x="${x}" y="${150 - h}" width="${w}" height="${h}"/>`;
+  const sunX = 130 + (seed * 53) % 140;
   const win = (x, y) => `<rect x="${x}" y="${y}" width="5" height="5"/>`;
   return `<svg class="poster" viewBox="0 0 400 150" role="img" aria-label="${label} artwork">
     <defs>
@@ -18,20 +17,29 @@ function posterSVG(seed, label) {
       <linearGradient id="${gid}s" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0" stop-color="#ffd319"/><stop offset="0.5" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/>
       </linearGradient>
-      <clipPath id="${gid}c"><circle cx="${sunX}" cy="78" r="40"/></clipPath>
+      <mask id="${gid}m">
+        <circle cx="${sunX}" cy="70" r="38" fill="#ffffff"/>
+        <g fill="#000000">
+          <rect x="${sunX - 43}" y="82" width="86" height="3"/>
+          <rect x="${sunX - 43}" y="91" width="86" height="4"/>
+          <rect x="${sunX - 43}" y="101" width="86" height="6"/>
+        </g>
+      </mask>
     </defs>
     <rect width="400" height="150" fill="url(#${gid})"/>
-    <g fill="#ffffff"><circle cx="${30 + seed * 17 % 60}" cy="18" r="1.4"/><circle cx="${300 + seed * 13 % 70}" cy="14" r="1.2"/><circle cx="${180 + seed * 29 % 90}" cy="26" r="1"/></g>
-    <g clip-path="url(#${gid}c)">
-      <circle cx="${sunX}" cy="78" r="40" fill="url(#${gid}s)"/>
-      <g fill="#0a0618"><rect x="${sunX - 45}" y="92" width="90" height="3"/><rect x="${sunX - 45}" y="101" width="90" height="4"/><rect x="${sunX - 45}" y="112" width="90" height="6"/></g>
+    <g fill="#ffffff"><circle cx="${30 + seed * 17 % 60}" cy="16" r="1.4"/><circle cx="${300 + seed * 13 % 70}" cy="12" r="1.2"/><circle cx="${180 + seed * 29 % 90}" cy="22" r="1"/></g>
+    <path d="M${sunX - 58} 70 A58 10 0 0 1 ${sunX + 58} 70" fill="none" stroke="${c1}" stroke-width="1.4" opacity=".35" transform="rotate(-10 ${sunX} 70)"/>
+    <circle cx="${sunX}" cy="70" r="38" fill="url(#${gid}s)" mask="url(#${gid}m)"/>
+    <path d="M${sunX - 58} 70 A58 10 0 0 0 ${sunX + 58} 70" fill="none" stroke="${c1}" stroke-width="1.5" opacity=".8" transform="rotate(-10 ${sunX} 70)"/>
+    <g fill="#120826">
+      <rect x="0" y="104" width="38" height="20"/><rect x="46" y="86" width="24" height="38"/><rect x="78" y="110" width="34" height="14"/>
+      <rect x="288" y="92" width="28" height="32"/><rect x="324" y="108" width="22" height="16"/><rect x="354" y="82" width="46" height="42"/>
     </g>
-    <ellipse cx="${sunX}" cy="78" rx="74" ry="12" fill="none" stroke="${c1}" stroke-width="1.4" opacity=".7" transform="rotate(-10 ${sunX} 78)"/>
-    <g fill="#120826">${b(8, 30, 46)}${b(46, 24, 64)}${b(78, 34, 38)}${b(288, 28, 58)}${b(324, 22, 42)}${b(354, 36, 68)}</g>
-    <g fill="${c1}">${win(54, 96)}${win(54, 110)}${win(296, 102)}${win(362, 92)}${win(362, 108)}</g>
-    <g fill="#ffd319">${win(16, 112)}${win(332, 116)}</g>
-    <g stroke="${c1}" stroke-width="1" opacity=".5"><path d="M0 132 H400 M0 140 H400 M0 148 H400"/></g>
-    <text x="14" y="144" fill="#f3eaff" font-family="monospace" font-size="13" letter-spacing="3">${label}</text>
+    <g fill="${c1}">${win(54, 96)}${win(54, 108)}${win(296, 102)}${win(362, 92)}${win(362, 106)}</g>
+    <g fill="#ffd319">${win(16, 112)}${win(332, 114)}</g>
+    <rect x="0" y="124" width="400" height="26" fill="#0a0618"/>
+    <line x1="0" y1="124" x2="400" y2="124" stroke="${c1}" stroke-width="1.2" opacity=".7"/>
+    <text x="14" y="142" fill="#f3eaff" font-family="monospace" font-size="13" letter-spacing="3">${label}</text>
   </svg>`;
 }
 
@@ -84,3 +92,66 @@ async function load() {
   }
 }
 load();
+
+// ===== Code-only motion: scroll reveal, parallax, progress, card tilt =====
+(function () {
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Scroll reveal with stagger
+  const targets = document.querySelectorAll(".block, .card, .news-item, .empty, .account-box");
+  targets.forEach((el, i) => {
+    el.classList.add("reveal");
+    el.style.transitionDelay = ((i % 4) * 70) + "ms";
+  });
+  if ("IntersectionObserver" in window && !reduce) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    targets.forEach((el) => io.observe(el));
+  } else {
+    targets.forEach((el) => el.classList.add("in"));
+  }
+
+  // Parallax hero + scroll progress (rAF-throttled)
+  const art = document.querySelector(".hero-art");
+  const heroText = document.querySelector(".hero h1");
+  const bar = document.getElementById("progress");
+  let ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      if (!reduce && art && y < window.innerHeight * 1.2) {
+        art.style.transform = "translateY(" + (y * 0.28) + "px) scale(1.06)";
+        if (heroText) heroText.style.transform = "translateY(" + (y * -0.08) + "px)";
+      }
+      if (bar) {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (max > 0 ? (y / max) * 100 : 0) + "%";
+      }
+      ticking = false;
+    });
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  // Card tilt on fine pointers
+  if (window.matchMedia("(pointer: fine)").matches && !reduce) {
+    document.querySelectorAll(".card:not(.sealed)").forEach((card) => {
+      card.addEventListener("mousemove", (ev) => {
+        const r = card.getBoundingClientRect();
+        const rx = ((ev.clientY - r.top) / r.height - 0.5) * -7;
+        const ry = ((ev.clientX - r.left) / r.width - 0.5) * 7;
+        card.classList.add("tilting");
+        card.style.transform = "perspective(700px) rotateX(" + rx + "deg) rotateY(" + ry + "deg) translateY(-2px)";
+      });
+      card.addEventListener("mouseleave", () => {
+        card.classList.remove("tilting");
+        card.style.transform = "";
+      });
+    });
+  }
+})();

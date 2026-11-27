@@ -51,3 +51,57 @@ h2{letter-spacing:.1em;text-transform:uppercase;font-size:1.5rem;border-bottom:1
 .mock-form input{width:100%;padding:.55rem;border:1px solid var(--line);background:#0d0620;color:var(--ink)}
 footer{text-align:center;color:var(--muted);padding:2.2rem 1rem;border-top:1px solid var(--line);letter-spacing:.08em;text-transform:uppercase;font-size:.85rem}
 @media (max-width:640px){nav{display:none}.hero h1{letter-spacing:.14em}}
+
+/* ===== Typography upgrade ===== */
+body{font-family:"Rajdhani",ui-sans-system,system-ui,"Segoe UI",Roboto,Arial,sans-serif;font-size:1.06rem;font-weight:500}
+h1,h2,h3,.logo,.btn,.kicker,.price,.badge,nav a,.hero-eyebrow{font-family:"Orbitron","Rajdhani",sans-serif}
+h2{font-weight:700;font-size:1.35rem}
+h3{font-weight:700;font-size:1.02rem}
+.logo{font-weight:900}
+.hero h1{font-weight:900}
+.btn{font-weight:700;font-size:.8rem}
+.badge{font-size:.68rem;font-weight:700}
+nav a{font-size:.78rem;font-weight:700}
+.hero-eyebrow{font-size:.72rem;font-weight:700}
+.card p,.section-note,.hero-note,.news-item p{font-weight:500}
+
+/* ===== Scroll progress ===== */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--violet),var(--pink),var(--magenta));z-index:100;box-shadow:0 0 10px rgba(255,46,136,.7)}
+
+/* ===== Ticker ===== */
+.ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(21,11,46,.6);padding:.45rem 0}
+.ticker-track{display:flex;width:max-content;animation:tickerMove 26s linear infinite;font-family:"Orbitron",sans-serif;font-size:.72rem;letter-spacing:.3em;color:var(--magenta);white-space:nowrap}
+@keyframes tickerMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ===== Scroll reveal ===== */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal h2{position:relative}
+.reveal.in h2{animation:glitchIn .5s steps(2) 1}
+@keyframes glitchIn{0%{text-shadow:3px 0 var(--pink),-3px 0 var(--cyan);transform:translateX(2px)}50%{text-shadow:-3px 0 var(--pink),3px 0 var(--cyan);transform:translateX(-2px)}100%{text-shadow:none;transform:none}}
+
+/* ===== Hero SVG animation (code only) ===== */
+.hero-art .stars circle{animation:twinkle 3.2s ease-in-out infinite}
+.hero-art .stars circle:nth-child(2n){animation-delay:.7s}
+.hero-art .stars circle:nth-child(3n){animation-delay:1.4s}
+.hero-art .stars circle:nth-child(4n){animation-delay:2.1s}
+@keyframes twinkle{0%,100%{opacity:.25}50%{opacity:1}}
+.hero-art .sun-disc{transform-box:fill-box;transform-origin:center;animation:sunPulse 7s ease-in-out infinite}
+@keyframes sunPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+.hero-art .ring-front{transform-box:fill-box;transform-origin:center;animation:ringSway 9s ease-in-out infinite}
+@keyframes ringSway{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(-5.5deg)}}
+.hero-art .gridfloor path{animation:gridFlow 4.5s linear infinite}
+.hero-art .gridfloor path:nth-child(odd){animation-delay:2.2s}
+@keyframes gridFlow{0%,100%{opacity:.55}50%{opacity:1}}
+.hero-art .reticles{transform-box:fill-box;transform-origin:center;animation:reticleFloat 6s ease-in-out infinite}
+@keyframes reticleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+
+/* ===== Card tilt (JS-driven, fine pointers) ===== */
+.card{transform-style:preserve-3d;will-change:transform}
+.card.tilting{transition:box-shadow .2s,border-color .2s}
+
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s !important;animation-iteration-count:1 !important;transition-duration:.001s !important}
+  .reveal{opacity:1;transform:none}
+}

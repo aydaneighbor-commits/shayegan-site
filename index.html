@@ -41,7 +41,7 @@
           <stop offset="0" stop-color="#fff066"/><stop offset="0.35" stop-color="#ff5e7e"/><stop offset="0.75" stop-color="#ff2975"/><stop offset="1" stop-color="#8c1eff"/>
         </linearGradient>
         <linearGradient id="gridfade" gradientUnits="userSpaceOnUse" x1="0" y1="300" x2="0" y2="420">
-          <stop offset="0" stop-color="#ff2e88" stop-opacity="0.15"/><stop offset="0.5" stop-color="#ff2e88" stop-opacity="0.55"/><stop offset="1" stop-color="#00f0ff" stop-opacity="0.85"/>
+          <stop offset="0" stop-color="#ff2e88" stop-opacity="0.3"/><stop offset="0.5" stop-color="#ff2e88" stop-opacity="0.75"/><stop offset="1" stop-color="#00f0ff" stop-opacity="1"/>
         </linearGradient>
         <linearGradient id="horizonGlow" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stop-color="#ff2975" stop-opacity="0"/><stop offset="1" stop-color="#ff2975" stop-opacity="0.4"/>
@@ -58,7 +58,10 @@
             <rect x="470" y="280" width="260" height="11"/>
           </g>
         </mask>
-        <filter id="neon-glow" x="-30%" y="-30%" width="160%" height="160%">
+        <radialGradient id="vignette" cx="0.5" cy="0.45" r="0.75">
+          <stop offset="0.55" stop-color="#0a0618" stop-opacity="0"/><stop offset="1" stop-color="#0a0618" stop-opacity="0.5"/>
+        </radialGradient>
+        <filter id="neon-glow" filterUnits="userSpaceOnUse" x="0" y="0" width="1200" height="420">
           <feGaussianBlur stdDeviation="4" result="blur"/>
           <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
@@ -90,18 +93,18 @@
         <path d="M0 300 L60 300 L60 250 L95 250 L95 285 L140 285 L140 215 L175 215 L175 300 L230 300 L230 262 L275 262 L275 300 L330 300 L330 235 L360 235 L360 300 L420 300 L420 270 L470 270 L470 300 Z"/>
         <path d="M730 300 L730 255 L775 255 L775 300 L830 300 L830 225 L865 225 L865 300 L925 300 L925 268 L970 268 L970 300 L1030 300 L1030 240 L1065 240 L1065 300 L1120 300 L1120 278 L1200 278 L1200 300 Z"/>
       </g>
-      <g fill="#ff4fd8">
+      <g fill="#ff4fd8" opacity="0.9" filter="url(#neon-glow)">
         <rect x="148" y="228" width="7" height="7"/><rect x="163" y="248" width="7" height="7"/>
         <rect x="838" y="240" width="7" height="7"/><rect x="853" y="262" width="7" height="7"/>
         <rect x="1038" y="255" width="7" height="7"/><rect x="68" y="262" width="7" height="7"/>
       </g>
-      <g fill="#ffd319">
+      <g fill="#ffd319" opacity="0.9" filter="url(#neon-glow)">
         <rect x="148" y="268" width="7" height="7"/><rect x="838" y="278" width="7" height="7"/>
         <rect x="238" y="276" width="7" height="7"/><rect x="933" y="280" width="7" height="7"/>
       </g>
       <rect x="0" y="300" width="1200" height="120" fill="#0a0618"/>
       <line x1="0" y1="300" x2="1200" y2="300" stroke="#ff4fd8" stroke-width="2" filter="url(#neon-glow)"/>
-      <g stroke="url(#gridfade)" stroke-width="1.5">
+      <g stroke="url(#gridfade)" stroke-width="1.9">
         <path d="M0 310 H1200"/><path d="M0 326 H1200"/><path d="M0 348 H1200"/><path d="M0 378 H1200"/><path d="M0 416 H1200"/>
         <path d="M600 300 L-210 420"/><path d="M600 300 L60 420"/><path d="M600 300 L330 420"/>
         <path d="M600 300 L600 420"/>
@@ -113,6 +116,7 @@
         <polygon points="1060,124 1072,134 1060,144 1048,134" fill="none" stroke="#ff4fd8" stroke-width="1.5"/>
         <polygon points="1060,129 1065,134 1060,139 1055,134" fill="#ffd319"/>
       </g>
+      <rect width="1200" height="420" fill="url(#vignette)"/>
     </svg>
     <p class="hero-eyebrow">// EST. 2026 · ARCHIVE ONLINE</p>
     <h1>SHAYEGAN<span class="dot">.</span></h1>

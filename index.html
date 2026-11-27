@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHAYEGAN — Neon Archive</title>
+<meta name="description" content="SHAYEGAN: a cyberpunk catalog for movies, series, games, apps, projects and daily AI & gaming news.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="logo" href="#top" aria-label="SHAYEGAN home">
+    <svg viewBox="0 0 64 64" width="42" height="42" role="img" aria-label="Shayegan mark">
+      <polygon points="32,4 58,20 58,44 32,60 6,44 6,20" fill="none" stroke="#00f6ff" stroke-width="3"/>
+      <polygon points="32,16 47,25 47,39 32,48 17,39 17,25" fill="none" stroke="#ff2ea6" stroke-width="2.5"/>
+      <circle cx="32" cy="32" r="5" fill="#ffe600"/>
+    </svg>
+    <span>SHAYEGAN</span>
+  </a>
+  <nav>
+    <a href="#movies">Movies</a><a href="#series">Series</a><a href="#games">Games</a>
+    <a href="#apps">Apps</a><a href="#projects">Projects</a><a href="#news">News</a>
+    <a href="#tiers">Access</a><a href="#store">Store</a><a href="#free">Free &amp; Official</a><a href="#account" class="cta">Sign in</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <svg class="hero-art" viewBox="0 0 800 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#00f6ff"/><stop offset="0.55" stop-color="#7b2fff"/><stop offset="1" stop-color="#ff2ea6"/>
+        </linearGradient>
+      </defs>
+      <rect width="800" height="260" fill="#050510"/>
+      <g stroke="url(#g1)" fill="none" stroke-width="2" opacity="0.9">
+        <path d="M0 210 L120 150 L240 190 L360 110 L480 160 L600 90 L800 140"/>
+        <path d="M0 230 L160 180 L320 215 L480 150 L640 195 L800 170" opacity="0.6"/>
+      </g>
+      <g fill="#0b0b24" stroke="#00f6ff" stroke-width="1.5">
+        <rect x="60" y="120" width="46" height="110"/><rect x="130" y="90" width="38" height="140"/>
+        <rect x="600" y="100" width="52" height="130"/><rect x="680" y="70" width="36" height="160"/>
+      </g>
+      <g fill="#ffe600"><rect x="74" y="140" width="8" height="8"/><rect x="144" y="115" width="8" height="8"/><rect x="620" y="125" width="8" height="8"/><rect x="692" y="95" width="8" height="8"/></g>
+      <circle cx="400" cy="70" r="34" fill="none" stroke="#ff2ea6" stroke-width="3"/>
+      <circle cx="400" cy="70" r="20" fill="none" stroke="#00f6ff" stroke-width="2"/>
+    </svg>
+    <h1>SHAYEGAN<span class="neon">.</span></h1>
+    <p class="tagline">A neon archive for film, series, games, apps — and the projects &amp; news behind them.</p>
+    <p class="hero-note">Catalog entries are generated from a folder-per-item library: drop a folder with an <code>info.json</code> in Drive, and it appears here. No code edits.</p>
+    <div class="hero-actions"><a class="btn primary" href="#movies">Browse the archive</a><a class="btn" href="#tiers">Access tiers</a></div>
+  </section>
+
+  <section id="movies" class="block">
+    <h2><span class="kicker">01</span> Movies</h2>
+    <p class="license-tag">LICENSED SOURCES ONLY — catalog &amp; metadata. No media files are hosted or distributed here; watch via official licensed services.</p>
+    <div id="movie-grid" class="grid"></div>
+    <h3 style="margin-top:1.6rem">Original AI Films by Shayegan</h3>
+    <p class="section-note">Cinematic films created by Shayegan with AI tools. These are original works owned by the creator, so downloads are enabled for this collection only — and only for entries marked <code>license: "own-work"</code> in their <code>info.json</code>.</p>
+    <div id="ai-film-grid" class="grid"></div>
+    <div id="ai-film-empty" class="empty"><p>No AI films published yet. Add a folder under <code>Shayegan/Movies/</code> with <code>"license": "own-work"</code> and a <code>download_url</code> in its <code>info.json</code>.</p></div>
+  </section>
+
+  <section id="series" class="block">
+    <h2><span class="kicker">02</span> Series &amp; Anime</h2>
+    <p class="license-tag">LICENSED SOURCES ONLY — catalog &amp; metadata. No media files are hosted or distributed here; watch via official licensed services.</p>
+    <div id="series-grid" class="grid"></div>
+  </section>
+
+  <section id="games" class="block">
+    <h2><span class="kicker">03</span> Games</h2>
+    <div class="empty">
+      <svg viewBox="0 0 120 60" width="120" height="60" aria-hidden="true"><rect x="10" y="15" width="100" height="32" rx="16" fill="none" stroke="#00f6ff" stroke-width="3"/><circle cx="82" cy="31" r="4" fill="#ff2ea6"/><circle cx="94" cy="31" r="4" fill="#ffe600"/><path d="M30 24 v14 M23 31 h14" stroke="#00f6ff" stroke-width="3"/></svg>
+      <p>No game entries yet. Add a folder under <code>Shayegan/Games/</code> with an <code>info.json</code> and it will show up here.</p>
+    </div>
+  </section>
+
+  <section id="apps" class="block">
+    <h2><span class="kicker">04</span> Apps &amp; Tools</h2>
+    <div class="empty">
+      <svg viewBox="0 0 120 60" width="120" height="60" aria-hidden="true"><g fill="none" stroke="#ff2ea6" stroke-width="3"><rect x="15" y="10" width="40" height="40"/><rect x="65" y="10" width="40" height="40"/><rect x="40" y="25" width="40" height="40" stroke="#00f6ff"/></g></svg>
+      <p>No app entries yet. Add a folder under <code>Shayegan/Apps/</code> with an <code>info.json</code> and it will show up here.</p>
+    </div>
+  </section>
+
+  <section id="projects" class="block">
+    <h2><span class="kicker">05</span> Projects</h2>
+    <div class="grid">
+      <article class="card">
+        <h3>Heart-Sound Abnormality Detection</h3>
+        <p>Machine-learning research on PhysioNet/CinC 2016 heart sounds, with leave-one-database-out evaluation. Public write-up and code land on GitHub when the repo opens.</p>
+        <span class="badge">ML · Research</span>
+      </article>
+      <article class="card">
+        <h3>AI Quant Trading Bot</h3>
+        <p>An algorithmic crypto trading system with layered risk controls and post-trade review. Private codebase; public notes and results summaries will be linked here.</p>
+        <span class="badge">AI · Trading</span>
+      </article>
+      <article class="card">
+        <h3>GitHub</h3>
+        <p>Project code lives on GitHub under the Shayegan account. Public repositories and write-ups will be linked here as they open.</p>
+        <p><a class="btn" href="https://github.com/aydaneighbor-commits" target="_blank" rel="noopener">github.com/aydaneighbor-commits</a></p>
+        <span class="badge">Code · Open source</span>
+      </article>
+    </div>
+  </section>
+
+  <section id="news" class="block">
+    <h2><span class="kicker">06</span> AI &amp; Gaming News</h2>
+    <p class="section-note">Ten curated stories a day across AI and gaming. First curated drop: 27 November 2026. Each story links to its source.</p>
+    <div id="news-list" class="news-list"></div>
+  </section>
+
+  <section id="tiers" class="block">
+    <h2><span class="kicker">07</span> Access Tiers</h2>
+    <div class="grid tiers">
+      <article class="card tier bronze">
+        <svg viewBox="0 0 60 60" width="48" height="48" aria-hidden="true"><polygon points="30,6 52,24 44,52 16,52 8,24" fill="none" stroke="#cd7f32" stroke-width="3"/></svg>
+        <h3>Bronze</h3><p class="price">Free</p>
+        <ul><li>Browse the full catalog &amp; descriptions</li><li>Daily AI &amp; gaming news</li><li>Project write-ups</li></ul>
+      </article>
+      <article class="card tier gold">
+        <svg viewBox="0 0 60 60" width="48" height="48" aria-hidden="true"><polygon points="30,6 52,24 44,52 16,52 8,24" fill="none" stroke="#ffd700" stroke-width="3"/><circle cx="30" cy="30" r="6" fill="#ffd700"/></svg>
+        <h3>Gold</h3><p class="price">Member</p>
+        <ul><li>Everything in Bronze</li><li>Download access to original AI films</li><li>Personal watchlists &amp; collections</li><li>Early project betas &amp; changelogs</li><li>Weekly deep-dive digest</li></ul>
+      </article>
+      <article class="card tier diamond">
+        <svg viewBox="0 0 60 60" width="48" height="48" aria-hidden="true"><polygon points="30,6 52,24 44,52 16,52 8,24" fill="none" stroke="#00f6ff" stroke-width="3"/><path d="M8 24 H52 M30 6 L20 24 L30 52 L40 24" fill="none" stroke="#00f6ff" stroke-width="1.5"/></svg>
+        <h3>Diamond</h3><p class="price">Inner circle</p>
+        <ul><li>Everything in Gold</li><li>Early access to new AI films</li><li>Request queue for new catalog entries</li><li>Private community &amp; polls</li><li>First access to new tools &amp; drops</li></ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="store" class="block">
+    <h2><span class="kicker">07B</span> Shayegan Store</h2>
+    <p class="section-note">Subscriptions for the Shayegan app (coming soon) and this site. How it works: you register with <strong>your own email</strong> and choose your own password, pick Bronze / Gold / Diamond, and payment activates the subscription on <strong>your own account</strong>. We never sell or hand out pre-made Gmail accounts or passwords — your login is yours alone.</p>
+    <div class="grid">
+      <article class="card"><h3>1 · Register</h3><p>Create your Shayegan account with your own email and a unique username.</p></article>
+      <article class="card"><h3>2 · Choose a tier</h3><p>Bronze is free. Gold and Diamond unlock AI-film downloads, early access and member perks.</p></article>
+      <article class="card"><h3>3 · Activation</h3><p>After payment, your tier is activated on your account and you can download your personal <code>license.txt</code> — a text file with your own Shayegan activation key for the app. It never contains a password or any third-party login.</p><p><a class="btn" href="downloads/license.sample.txt" download>Download sample license.txt</a></p></article>
+    </div>
+  </section>
+
+  <section id="free" class="block">
+    <h2><span class="kicker">08</span> Free &amp; Official</h2>
+    <p class="section-note">No accounts are sold or given away here. Every service below is free to join on its own official site or app with your own email — create your own account there, in your own name.</p>
+    <div class="grid">
+      <article class="card">
+        <h3>Muse</h3>
+        <p>Your personal AI agent from Meta. Get the Muse app or open Muse on the web and sign up with your own account — free to start.</p>
+        <span class="badge">Official signup · Free to start</span>
+      </article>
+      <article class="card">
+        <h3>Google Gemini</h3>
+        <p>Google's AI assistant. Sign in with your own Google account on the official Gemini site or app.</p>
+        <span class="badge">Official signup · Free tier</span>
+      </article>
+      <article class="card">
+        <h3>Google AI Studio</h3>
+        <p>Google's developer playground for Gemini models. Sign in with your own Google account on the official AI Studio site.</p>
+        <span class="badge">Official signup · Free tier</span>
+      </article>
+    </div>
+  </section>
+
+  <section id="account" class="block">
+    <h2><span class="kicker">09</span> Account</h2>
+    <div class="account-box">
+      <p>Sign-in and registration run on the production backend (Google sign-in, unique username, tier assignment). This prototype shows the interface only — no passwords are collected or stored here. Shayegan app subscriptions activate on the account you register yourself; no pre-made accounts or passwords are ever handed out.</p>
+      <form class="mock-form" onsubmit="return false">
+        <label>Email <input type="email" placeholder="you@gmail.com" disabled></label>
+        <label>Username <input type="text" placeholder="unique-username" disabled></label>
+        <button class="btn primary" disabled>Continue with Google — coming with backend</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>SHAYEGAN · kirtooshayegan.com · Catalog generated from Drive folders · All artwork on this page is inline SVG.</p>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
